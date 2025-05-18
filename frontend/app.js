@@ -6,7 +6,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const backendUrl = 'http://backend:5000/submit';
+const backendUrl = 'http://3.239.80.182:5000/submit';
+
 
 app.get('/', (req, res) => {
   res.send(`
@@ -37,4 +38,4 @@ app.post('/submit', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Frontend running on http://localhost:3001'));
+app.listen(3001, () => console.log('Frontend running on http://localhost:3001'));
