@@ -1,9 +1,10 @@
 pipeline {
     agent any
+
     environment {
-        HOME = "/home/ubuntu"
-        PATH = "/usr/local/bin:/usr/bin:/bin:${env.PATH}"
+        HOME = "/var/lib/jenkins"
     }
+
     stages {
         stage('Run deploy.sh') {
             steps {
