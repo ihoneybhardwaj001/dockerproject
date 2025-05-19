@@ -1,10 +1,12 @@
 pipeline {
     agent any
-
+    environment {
+        HOME = "/home/ubuntu"
+        PATH = "/usr/local/bin:/usr/bin:/bin:${env.PATH}"
+    }
     stages {
         stage('Run deploy.sh') {
             steps {
-                echo 'Executing deploy.sh script...'
                 sh '/home/ubuntu/dockerproject/deploy.sh'
             }
         }
