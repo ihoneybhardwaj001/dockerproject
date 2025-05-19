@@ -20,6 +20,18 @@ pipeline {
                 sh 'ls -l /home/ubuntu/dockerproject/deploy.sh'
             }
         }
+        
+        stage('Check Node, npm, and pm2 versions') {
+            steps {
+                echo 'Checking Node, npm, and pm2 versions:'
+                sh '''
+                node -v
+                npm -v
+                pm2 -v
+                '''
+            }
+        }
+
         stage('Run deploy.sh') {
             steps {
                 echo 'Executing deploy.sh script...'
