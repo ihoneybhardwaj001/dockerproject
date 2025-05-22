@@ -17,4 +17,5 @@ spec:
         image: ihoneybhardwaj/dockerproject-backend:latest
         ports:
         - containerPort: 5002
+        -  nodePort: 30080
 

@@ -1,12 +1,18 @@
 from flask import Flask, request, jsonify
-from pymongo import MongoClient
 from flask_cors import CORS
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)  # Allow cross-origin requests from frontend
 
-# MongoDB Atlas connection (replace <...> with your connection string)
-client = MongoClient("mongodb+srv://honey:999026264a@cluster0.hvfslcb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+# MongoDB connection from environment variable
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(MONGO_URI)
 db = client.mydb
 collection = db.users
 
@@ -28,10 +34,16 @@ def submit():
 @app.route('/api', methods=['GET'])
 def get_api_data():
     try:
-        with open("data.json", "r") as f:
-            import json
-            data = json.load(f)
-        return jsonify(data)
+        users = list(collection.find({}, {"_id": 0}))
+        return jsonify({"users": users})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/users', methods=['GET'])
+def get_users():
+    try:
+        users = list(collection.find({}, {"_id": 0}))
+        return jsonify(users)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

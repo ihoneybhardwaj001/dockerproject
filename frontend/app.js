@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const backendUrl = 'http://backend-service:5002/submit';
+const backendUrl = 'http://192.168.34.144:5002/submit';
 
 
 
