@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: express-frontend:local
+        image: ihoneybhardwaj/dockerproject-frontend:latest
         ports:
         - containerPort: 3001
 

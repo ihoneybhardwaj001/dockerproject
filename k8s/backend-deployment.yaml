@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: flask-backend:local
+        image: ihoneybhardwaj/dockerproject-backend:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 5002
 
